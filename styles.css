@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Cinzel:wght@500&family=DM+Sans:wght@500&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    --text-color: #000000;
+    --text-color: #343434;
     --font-family: Montserrat;
-    --background: linear-gradient(rgb(222, 206, 255));
+    --background: #474747;
+    --gradient-color: #242424;
 }
 
 html {
@@ -12,12 +13,115 @@ html {
 }
 
 body {
+    height: 100vh;
+    width: 100%;
     margin: 0;
-    background: var(--background);
+    background-color: var(--background);
 }
 
-#results-div {
+h1 {
+    font-size: 1.6rem;
+}
+
+a {
+    position: relative;
+    display: block;
+    width: min-content;
+    margin: auto;
+    top: 2rem;
+}
+
+.logo { 
+    display: block;
+    width: 8rem;
+    height: auto;
+    margin: auto;
+    transition: all 0.2s ease-out, filter 500ms cubic-bezier(0.4, 0, 1, 1);;
+}
+
+.hover { 
+    transform: scale(1.02);
+    animation: hue-rotate 1s ease-out infinite alternate;
+}
+
+.hover:active { 
+    transform: scale(0.95);
+}
+
+.main-container {
+    position: absolute;
+    height: min-content;
+    width: 30rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: var(--text-color);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.203);
+}
+
+.main-container > * {
+    margin: 1rem;
+}
+
+.main-container input {
+    font-size: 1.4rem;
+    padding: 5px;
+}
+
+.button-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.button {
+    background: linear-gradient(150deg,var(--gradient-color) 0%, var(--gradient-color) 35%, #707070 50%, var(--gradient-color) 65%);
+    background-size: 300% 300%;
+    background-position: 100% 100%;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    width: 8rem;
+    margin: 0 1rem;
+    padding: 0.65rem 2rem;
+    cursor: pointer;
+    font-family: var(--font-family);
+    transition: all 0.15s ease;
+}
+
+.active { 
+    background: linear-gradient(150deg,var(--gradient-color) 0%, var(--gradient-color) 35%, #707070 50%, var(--gradient-color) 65%);
+    background-size: 300% 300%;
+    animation: gradient-animation 400ms ease-in reverse forwards;
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
+
+.button:active {
+    transform: scale(1);
+}
+
+
+.results {
     font-weight: 500;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    animation: fade-in 400ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.collapse {
+    animation: collapse 400ms ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .valid {
@@ -26,4 +130,62 @@ body {
 
 .invalid {
     color: red
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        height: 0;
+        margin: 0 auto;
+        padding: 0;
+    }
+    100% {
+        opacity: 1;
+        height: 1rem;
+        padding: 1rem;
+    }
+}
+
+@keyframes collapse {
+    0% {
+        height: 1rem;
+        padding: 1rem;
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+
+    90% {
+        height: 0;
+        padding: 0;
+    }
+    100% {
+        height: 0;
+        padding: 0;
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes hue-rotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(20deg);
+    }
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
 }
